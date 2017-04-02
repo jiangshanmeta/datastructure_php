@@ -3,7 +3,7 @@
 * [线性结构](linear/README.md)
 	* [顺序存储方式](linear/seq.md)
 	* [链式存储方式](linear/linked.md)
-
-* [栈](stack/README.md)
-  
-* [队](queue/README.md)
+	* [顺序存储和链式存储的比较](linear/compare.md)
+	* [栈](linear/stack.md)
+	* [队](linear/queue.md)
+* [树](tree/README.md)
