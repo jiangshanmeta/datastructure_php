@@ -11,3 +11,5 @@
 	* [树的遍历](tree/traversal.md)
 	* [反转二叉树](tree/invert.md)
 	* [二叉搜索树](tree/search.md)
+	* [堆](tree/heap.md)
+	* [霍夫曼树](tree/huffman.md)
