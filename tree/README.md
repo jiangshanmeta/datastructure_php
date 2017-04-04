@@ -2,7 +2,7 @@
 
 从定义中我们可以看到树其实是一种递归的定义，和树有关的操作也大量和递归有关。
 
-关于树的基本概念，比如**节点的度**、**树的度**、**节点层次**、**树的深度**，请自行查阅相关书籍。
+关于树的基本概念，比如**节点的度**、**树的度**、**节点层次**、**树的深度**、**树的路径长度**、**树的带权路径长度**，请自行查阅相关书籍。
 
 
 我们接下来要讨论的主要是二叉树。二叉树是一种特定类型的树，每个节点至多有两颗子树(任意节点的度不大于2，树的度不大于2)，且这两颗子树有左右之分。
@@ -27,6 +27,14 @@ class Node_tree{
 
 	function update($newValue){
 		$this->data = $newValue;
+	}
+
+	protected function _formatNode($value){
+		if(!($value instanceof Node_tree)){
+			$value = new Node_tree($value);
+		}
+		$value->parentNode = $this;
+		return $value;
 	}
 
 	function setLeft($value){
