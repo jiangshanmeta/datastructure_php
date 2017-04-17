@@ -13,4 +13,7 @@
 	* [二叉搜索树](tree/search.md)
 	* [堆](tree/heap.md)
 	* [霍夫曼树](tree/huffman.md)
+* [图](graph/README.md)
+	* [图的表示](graph/create.md)
+	* [图的遍历](graph/search.md)
 * [SPL提供的数据结构](spl/README.md)
