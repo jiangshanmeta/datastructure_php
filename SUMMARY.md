@@ -17,3 +17,5 @@
 	* [图的表示](graph/create.md)
 	* [图的遍历](graph/search.md)
 * [SPL提供的数据结构](spl/README.md)
+* [排序](sort/README.md)
+	* [冒泡排序](sort/bubble.md)
