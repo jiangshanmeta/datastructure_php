@@ -19,3 +19,4 @@
 * [SPL提供的数据结构](spl/README.md)
 * [排序](sort/README.md)
 	* [冒泡排序](sort/bubble.md)
+	* [插入排序](sort/insert.md)
