@@ -20,3 +20,4 @@
 * [排序](sort/README.md)
 	* [冒泡排序](sort/bubble.md)
 	* [插入排序](sort/insert.md)
+	* [希尔排序](sort/shell.md)
