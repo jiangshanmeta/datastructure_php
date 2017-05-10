@@ -56,4 +56,26 @@ static function mergeSort($arr){
 }
 ```
 
+上面是递归的实现，我们知道，递归对空间消耗比较大，我们将递归的形式改成非递归的形式：
+
+```php
+static function mergeSort2($arr){
+	if(!is_array($arr)){
+		return $arr;
+	}
+	$queue = [];
+	$len = count($arr);
+	for($i=0;$i<$len;$i++){
+		$queue[] = [$arr[$i]];
+	}
+	while($len>1){
+		$arr1 = array_shift($queue);
+		$arr2 = array_shift($queue);
+		array_push($queue,self::_merge($arr1,$arr2));
+		$len--;
+	}
+	return $queue[0];
+}
+```
+
 这种算法时间复杂度为O(nlogn)。
