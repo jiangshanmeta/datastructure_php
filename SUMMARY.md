@@ -23,3 +23,4 @@
 	* [插入排序](sort/insert.md)
 	* [希尔排序](sort/shell.md)
 	* [归并排序](sort/merge.md)
+	* [快速排序](sort/quick.md)
