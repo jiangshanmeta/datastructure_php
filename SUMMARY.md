@@ -24,3 +24,4 @@
 	* [希尔排序](sort/shell.md)
 	* [归并排序](sort/merge.md)
 	* [快速排序](sort/quick.md)
+	* [基数排序](sort/radix.md)
