@@ -22,6 +22,8 @@
 	* [冒泡排序](sort/bubble.md)
 	* [插入排序](sort/insert.md)
 	* [希尔排序](sort/shell.md)
+	* [堆排序](sort/heap.md)
 	* [归并排序](sort/merge.md)
 	* [快速排序](sort/quick.md)
 	* [基数排序](sort/radix.md)
+	* [排序算法比较](sort/compare.me)
