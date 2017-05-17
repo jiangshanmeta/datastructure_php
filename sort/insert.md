@@ -1,13 +1,15 @@
-插入排序类似于我们插入扑克牌的过程：拿到一张新牌，与手中的牌比较(倒序)，如果被比较的牌比新牌大，被比较的排向后移空出新牌的位置，否则终止比较，空出来的位置就是新牌应该插入的位置。
+插入排序类似于我们插入扑克牌的过程：拿到一张新牌，与手中的牌比较(倒序)，如果被比较的牌比新牌大，被比较的牌向后移空出新牌的位置，否则终止比较，空出来的位置就是新牌应该插入的位置。
 
 ```php
-static function insertSort($arr){
+static public function insertSort(&$arr){
 	if(!is_array($arr)){
-		return $arr;
+		return false;
 	}
 	$len = count($arr);
+	// 对应摸牌过程
 	for($i=1;$i<$len;$i++){
 		$item = $arr[$i];
+		// 与手中已有的牌比较的过程
 		for($j=$i;$j>0;$j--){
 			if($arr[$j-1]>$item){
 				$arr[$j] = $arr[$j-1];
@@ -17,7 +19,7 @@ static function insertSort($arr){
 		}
 		$arr[$j] = $item;
 	}
-	return $arr;
+	return true;
 }
 ```
 

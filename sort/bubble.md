@@ -1,44 +1,18 @@
-冒泡排序的思路是这样的：序列从头向后扫描，如果当前元素大于下一个元素，则两者交换，第一次扫描完成后最大的元素一定在序列最后，然后重复这个步骤直到全部排好。
+冒泡排序的思路是这样的：从头到尾扫描待排序列，如果当前元素大于下一个元素，则两元素交换位置，每经过一次扫描最大元素移到待排序列最后。
 
 ```php
-class Sort{
-	static function bubbleSort($arr){
-		if(!is_array($arr)){
-			return $arr;
-		}
-		$len = count($arr);
-		for($end = $len-1;$end>=0;$end--){
-			for($i=0;$i<$end;$i++){
-				if($arr[$i]>$arr[$i+1]){
-					$temp = $arr[$i];
-					$arr[$i] = $arr[$i+1];
-					$arr[$i+1] = $temp;
-					$flag = true;
-				}
-			}
-		}
-		return $arr;
-	}
-}
-```
-
-上面就是基本实现了，这样算法时间复杂度为O(n^2)。
-
-这个算法还有可以改进的地方：如果执行到一定程度已经有序了，我们应该终止循环。那如何判断已经有序了呢？如果一趟排序从头到尾没有发生交换，则已经排好序了。在下面的实现中，我们通过一个变量```$flag```来表明一趟循环是否发生了交换。
-
-```php
-static function bubbleSort($arr){
+static public function bubbleSort(&$arr){
 	if(!is_array($arr)){
-		return $arr;
+		return false;
 	}
 	$len = count($arr);
-	for($end = $len-1;$end>=0;$end--){
+	// 每扫描一次，筛出最大的元素放到最后
+	for($i=0;$i<$len;$i++){
+		$end = $len - $i;
 		$flag = false;
-		for($i=0;$i<$end;$i++){
-			if($arr[$i]>$arr[$i+1]){
-				$temp = $arr[$i];
-				$arr[$i] = $arr[$i+1];
-				$arr[$i+1] = $temp;
+		for($j=1;$j<$end;$j++){
+			if($arr[$j-1]>$arr[$j]){
+				self::_swap($arr,$j-1,$j);
 				$flag = true;
 			}
 		}
@@ -46,8 +20,10 @@ static function bubbleSort($arr){
 			break;
 		}
 	}
-	return $arr;
+	return true;
 }
 ```
 
-这样最好情况下(顺序)时间复杂度为O(n)，最坏情况下时间复杂度度为O(n^2)。
+上面的实现中有个```$flag```，它的作用是表示是否已经排好序了，当还需要交换的时候说明没有排好序，一次扫描没有发生交换说明已经排好序了，这时候需要终止循环避免无用的扫描。
+
+这个实现对应最好时间复杂度为O(n)，对应最坏时间复杂度为O(n^2)。

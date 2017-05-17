@@ -1,24 +1,23 @@
-选择排序是最容易理解的一个排序了，它的思路是这样的：依次从未排序的序列中找到最小的，把它交换到有序部分的最后。
+选择排序是最容易理解的一个排序算法了，它的思路是这样的：从待排序列找到最小的，将最小值从待排序列移除，重复上述两步直到排好序。
 
 ```php
-static function selectSort($arr){
+static public function selectSort(&$arr){
 	if(!is_array($arr)){
-		return $arr;
+		return false;
 	}
 	$len = count($arr);
 	for($i=0;$i<$len;$i++){
 		$item = $arr[$i];
-		for($j=$i+1,$index=$i;$j<$len;$j++){
+		$index = $i;
+		for($j=$i+1;$j<$len;$j++){
 			if($arr[$j]<$item){
 				$index = $j;
+				$item = $arr[$j];
 			}
 		}
-		if($i!==$index){
-			$arr[$i] = $arr[$index];
-			$arr[$index] = $item;
-		}
+		self::_swap($arr,$i,$index);
 	}
-	return $arr;
+	return true;
 }
 ```
 

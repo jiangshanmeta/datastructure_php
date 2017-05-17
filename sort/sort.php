@@ -34,10 +34,15 @@ class Sort{
 		$len = count($arr);
 		for($i=0;$i<$len;$i++){
 			$end = $len - $i;
+			$flag = false;
 			for($j=1;$j<$end;$j++){
 				if($arr[$j-1]>$arr[$j]){
 					self::_swap($arr,$j-1,$j);
+					$flag = true;
 				}
+			}
+			if(!$flag){
+				break;
 			}
 		}
 		return true;

@@ -4,7 +4,6 @@
 
 
 ```php
-// 获取数字低n位
 static private function _getDigit($num,$digit=1){
 	for($i=0;$i<$digit;$i++){
 		$rst = $num%10;
@@ -14,8 +13,7 @@ static private function _getDigit($num,$digit=1){
 }
 
 static private function _getNumLen($num){
-	$num = (string)$num;
-	return strlen($num);
+	return strlen((string)$num);
 }
 
 static private function _getBucket(){
@@ -33,30 +31,29 @@ static private function _getBucket(){
 	];
 }
 
-static function LSDRadixSort($arr){
+static public function LSDRadixSort(&$arr){
 	if(!is_array($arr)){
-		return $arr;
+		return false;
 	}
 	$maxLen = 1;
 	$bucket = self::_getBucket();
-	// 从低位到高位，$maxLen(最大的位数)需要在第一次循环后才能确定
 	for($i=0;$i<$maxLen;$i++){
 		if($i>0){
+			// 上一次的结果作为这次处理的依据
 			$newBucket = self::_getBucket();
 			$bucketLen = count($bucket);
 			for($j=0;$j<$bucketLen;$j++){
-				$bucketItemArr = $bucket[$j];
-				$bucketItemArrLen = count($bucketItemArr);
-				for($k=0;$k<$bucketItemArrLen;$k++){
-					$item = $bucketItemArr[$k];
-					// 根据低n位的值分配
+				$bucketArr = $bucket[$j];
+				$bucketArrLen = count($bucketArr);
+				for($k=0;$k<$bucketArrLen;$k++){
+					$item = $bucketArr[$k];
 					$bucketId = self::_getDigit($item,$i+1);
 					$newBucket[$bucketId][] = $item;
 				}
 			}
 			$bucket = $newBucket;
 		}else{
-			// 第一次分配特殊处理，要把原始数据结构调整为_getBucket返回的数据结构
+			// 第一次处理需要调整数据结构
 			$arrLen = count($arr);
 			for($j=0;$j<$arrLen;$j++){
 				$item = $arr[$j];
@@ -64,22 +61,23 @@ static function LSDRadixSort($arr){
 				if($itemLength>$maxLen){
 					$maxLen = $itemLength;
 				}
-				$bucketId = self::_getDigit($item,$i+1);
+				$bucketId = self::_getDigit($item,1);
 				$bucket[$bucketId][] = $item;
 			}
 		}
 	}
 
-	$rst = [];
-	// 最后的收集工作
+	// 最后的合并工作
 	$bucketLen = count($bucket);
+	$index = 0;
 	for($i=0;$i<$bucketLen;$i++){
-		$bucketItemArr = $bucket[$i];
-		$bucketItemArrLen = count($bucketItemArr);
-		for($j=0;$j<$bucketItemArrLen;$j++){
-			$rst[] = $bucketItemArr[$j];
+		$bucketArr = $bucket[$i];
+		$bucketArrLen = count($bucketArr);
+		for($j=0;$j<$bucketArrLen;$j++){
+			$arr[$index] = $bucketArr[$j];
+			$index++;
 		}
 	}
-	return $rst;
+	return true;
 }
 ```

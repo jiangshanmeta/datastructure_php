@@ -6,45 +6,45 @@
 
 
 ```php
-static function _parentIndex($index){
-	return ceil($index/2)-1;
+static private function _parentIndex($num){
+	return ceil($num/2) - 1;
 }
 
-// 调整成为最大堆
-static function _perceDown(&$arr,$from,$to){
+// 调整成最大堆
+static private function _perceDown(&$arr,$from,$to){
 	$temp = $arr[$from];
-	$child;
-	for($parent=$from;(2*$parent+1)<=$to;$parent=$child){
-		$child = 2*$parent +1;
-		if($child<$to&&$arr[$child]<$arr[$child+1]){
+	for($parent=$from;2*$parent+1<=$to;$parent=$child){
+		$child = 2*$parent + 1;
+		if($child+1<=$to && $arr[$child+1]>$arr[$child]){
 			$child++;
 		}
-		if($temp>=$arr[$child]){
-			break;
-		}else{
+		if($arr[$child]>$temp){
 			$arr[$parent] = $arr[$child];
+		}else{
+			break;
 		}
 	}
 	$arr[$parent] = $temp;
 }
 
-static function heapSort($arr){
+static public function heapSort(&$arr){
 	if(!is_array($arr)){
-		return $arr;
+		return false;
 	}
 	$len = count($arr);
-	// 初始化成为最大堆
+	// 调整原始数据成为最大堆
 	for($i=self::_parentIndex($len-1);$i>=0;$i--){
 		self::_perceDown($arr,$i,$len-1);
 	}
 
 	for($i=$len-1;$i>0;$i--){
-		// 移除最大元素
+		// 未排序序列(最大堆)中选出最大的，放到最后
 		self::_swap($arr,0,$i);
-		// 堆尺寸减一，剩余元素调整成为最大堆
+
+		// 重新调整为最大堆
 		self::_perceDown($arr,0,$i-1);
 	}
-	return $arr;
+	return true;
 }
 ```
 
