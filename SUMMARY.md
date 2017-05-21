@@ -16,6 +16,7 @@
 * [图](graph/README.md)
 	* [图的表示](graph/create.md)
 	* [图的遍历](graph/search.md)
+	* [最短路径](graph/shortpath.md)
 * [SPL提供的数据结构](spl/README.md)
 * [排序](sort/README.md)
 	* [选择排序](sort/select.md)

@@ -4,19 +4,24 @@
 
 ```php
 class Graph{
-	protected $nodes = [];
+	protected $_nodes = [];
 	protected $_edges = [];
 	function __construct(){
 
 	}
 
 	function insert($node){
-		if(!($node instanceof Node_graph)){
-			$node = new Node_graph($node);
+		if(!($node instanceof Graph_node)){
+			$node = new Graph_node($node);
 		}
 		$index = $this->length();
 		$node->set_index($index);
-		$this->nodes[$index] = $node;
+		$this->insert_indexed_node($node);
+	}
+
+	function insert_indexed_node($node){
+		$index = $node->get_index();
+		$this->_nodes[$index] = $node;
 	}
 
 	function length(){
@@ -29,7 +34,10 @@ class Graph{
 		}
 		$this->_edges[$from][$to] = $weight;
 	}
-
+	
+	function get_node_by_index($index){
+		return $this->_nodes[$index];
+	}
 
 }
 ```
